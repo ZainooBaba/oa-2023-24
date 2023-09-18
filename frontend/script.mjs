@@ -8,13 +8,16 @@
 // 8. enter not working
 async function sendCoin() {
     //send post request to backend
-    const res = await fetch(
-        "http://localhost:3000/coinAdd:" + document.getElementById("nameField").value,
-    )
-    if(res.status == 200) {
-        addButtons(res.json())
-    }
-    console.log(res)
+
+    addButtons(["bitcoin", "ethereum", "dogecoin"])
+
+    // const res = await fetch(
+    //     "http://localhost:3000/coinAdd:" + document.getElementById("nameField").value,
+    // )
+    // if(res.status == 200) {
+    //     addButtons(res.json())
+    // }
+    // console.log(res)
 }
 
 function addButtons(items) {

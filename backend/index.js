@@ -20,16 +20,16 @@ async function updateData() {
     for(let coin of allCoins) {
         const response = await fetch('https://api.coincap.io/v2/assets/' + coin, requestOptions)
             .then(response => response.json())
-        try {
             let coinInfo = response.data
             if (!coinMap.has(coin)) coinMap.set(coin, [])
             let coinData = coinMap.get(coin)
+        try {
             if (coinData[coinData.length - 1][0] == coinInfo.priceUsd) continue
+        }catch (e){
+            console.log(e)
+        }
             coinData.push([coinInfo.priceUsd, new Date().toTimeString()])
             coinMap.set(coin, coinData)
-        } catch (e) {
-
-        }
     }
 }
 
