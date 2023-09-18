@@ -7,9 +7,21 @@ app.use(cors({
     origin: "http://localhost:63342"
 }))
 
+const Colors = [
+    'rgb(120,28,129)',
+    'rgb(72,139,194)',
+    'rgb(210,179,63)',
+    'rgb(64,67,153)',
+    'rgb(217,33,32)',
+    'rgb(107,178,140)',
+    'rgb(159,190,87)',
+    'rgb(231,126,49)',
 
-const allCoins = ["bitcoin"]
-const coinMap = new Map();
+]
+
+
+const allCoins = ["bitcoin","dogecoin","ethereum","litecoin","monero"]
+let coinMap = new Map();
 coinMap.set("bitcoin", [])
 
 const requestOptions = {
@@ -61,14 +73,20 @@ app.get("/coinAdd:*",
                 return
             }
         }
-        res.send({coins:'included'}).status(100)
+        res.send({coins:allCoins}).status(400)
         return
     })
 
 app.get("/coinReq:*",
     (req, res) => {
         let coinName = req.url.split(":")[1]
-        let trace = getCoinData("bitcoin")
+        let trace = getCoinData(coinName)
+        res.send(trace).status(200)
+    })
+
+app.get("/clear",
+    (req, res) => {
+        coinMap = new Map()
         res.send(trace).status(200)
     })
 
@@ -84,6 +102,9 @@ function getCoinData(coinName) {
         name: coinName,
         x: x,
         y: y,
+        marker: {
+            color: Colors[allCoins.indexOf(coinName) % Colors.length],
+        },
     }
     return trace
 }
@@ -93,5 +114,5 @@ const port = process.env.PORT || 3000
 app.listen(port, () => console.log(`server listening on port ${port} 🚀`))
 
 setInterval(async () => {
-    await updateData("bitcoin")
+    await updateData()
 }, 1000)

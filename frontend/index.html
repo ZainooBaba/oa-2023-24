@@ -4,11 +4,15 @@
         <script src="https://cdn.plot.ly/plotly-2.25.2.min.js" charset="utf-8"></script>
         <script type="module" src="graph.mjs"></script>
         <script  src="script.mjs"></script>
+        <link rel="stylesheet" href="styles.css">
     </head>
     <body>
+    <h1>CRYPTO-TRACKER</h1>
         <div id="graph"></div>
         <div id="coinSlect"></div>
-        <input type="text" id="nameField" placeholder="Enter New Coin">
-        <button id="add" onclick="sendCoin()">Add</button>
+        <input type="text" id="nameField" placeholder="Enter New Coin" class="textInput">
+        <button id="add" onclick="sendCoin()" class="submit">Add</button>
+        <button id="clear" onclick="clearAllData()" class="submit red">CLEAR DATA</button>
+    <p>choose to add other crypto such as ...<br/>ripple,tether,tron,zcash</p>
     </body>
 </html>
