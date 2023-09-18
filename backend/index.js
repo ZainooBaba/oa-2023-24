@@ -4,7 +4,7 @@ import cors from "cors"
 const app = express()
 
 app.use(cors({
-    origin: "http://localhost:63342"
+    origin: "http://localhost:5500"
 }))
 
 const Colors = [

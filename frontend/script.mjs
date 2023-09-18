@@ -7,6 +7,8 @@
 // 7. get old coin data
 // 8. enter not working
 
+const url = "https://sore-jade-seal-belt.cyclic.cloud/"
+// const url = "http://localhost:3000/"
 
 let currentCoin = "bitcoin"
 
@@ -17,7 +19,7 @@ setInterval(async () => {
 async function updateData() {
     const graphDiv = document.getElementById("graph");
     const res = await fetch(
-        "http://localhost:3000/coinReq:" + currentCoin
+        url+"coinReq:" + currentCoin
     )
     Plotly.react(graphDiv, [await res.json()]);
 }
@@ -25,7 +27,7 @@ async function updateData() {
 
 async function sendCoin() {
     if(document.getElementById("nameField").value == "") return
-    const response = await fetch("http://localhost:3000/coinAdd:" + document.getElementById("nameField").value);
+    const response = await fetch(url+"coinAdd:" + document.getElementById("nameField").value);
     const data = await response.json();
     if (data.coins != "not found") {
         addButtons(data.coins)
@@ -49,7 +51,7 @@ function addButtons(items) {
 
 function clearAllData(){
     const res = fetch(
-        "http://localhost:3000/clear"
+        url+"clear"
     )
 }
 
