@@ -7,7 +7,7 @@
 // 7. get old coin data
 // 8. enter not working
 
-const url = "https://sore-jade-seal-belt.cyclic.cloud/"
+const url = "https://cyrpto-tracker.zeabur.app/"
 // const url = "http://localhost:3000/"
 
 let currentCoin = "bitcoin"
